@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NEON INVADERS // Arcade</title><link rel="stylesheet" href="style.css"></head>
+<body><main class="shell">
+<header><div><p class="eyebrow">ARCADE SYSTEMS // 2088</p><h1>NEON <span>INVADERS</span></h1></div><div class="status">● SYSTEM ONLINE</div></header>
+<section class="hud"><div>SCORE<strong id="score">000000</strong></div><div>WAVE<strong id="wave">01</strong></div><div>LIVES<strong id="lives">♥ ♥ ♥</strong></div></section>
+<section class="frame"><canvas id="game" width="900" height="600" aria-label="Space shooter game"></canvas><div id="overlay" class="overlay"><div><p class="eyebrow">INCOMING TRANSMISSION</p><h2 id="overlay-title">DEFEND THE<br><span>GALAXY</span></h2><p id="overlay-copy">The neon fleet is approaching. Pilot, you're our last line of defense.</p><button id="start-btn">▶ START MISSION</button><small>MOVE: ← → / A D · FIRE: SPACE</small></div></div></section>
+<footer><span>● PILOT LINK ACTIVE</span><span>● THREAT DETECTED</span><span>BUILD <b id="build-id">LIVE</b></span></footer>
+<div class="touch"><button id="left-btn">◀</button><button id="fire-btn">FIRE</button><button id="right-btn">▶</button></div>
+</main><script type="module" src="game.js"></script></body></html>

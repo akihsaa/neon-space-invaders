@@ -1,0 +1,1 @@
+{"name":"neon-space-invaders","version":"1.0.0","private":true,"type":"module","description":"Neon arcade game with Jenkins CI/CD","scripts":{"test":"node --test","build":"node scripts/build.js","serve":"node server.js"},"engines":{"node":">=18"}}
