@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -9,6 +10,7 @@ pipeline {
         DEPLOY_DIR = 'C:/space-invaders-live'
         DOCKER_IMAGE = 'neon-space-invaders'
         CONTAINER_NAME = 'neon-space-game'
+        DOCKER = 'C:/Users/arpit/AppData/Local/Programs/DockerDesktop/resources/bin/docker.exe'
     }
 
     options {
@@ -58,15 +60,15 @@ pipeline {
 
         stage('Check Docker') {
             steps {
-                bat 'docker --version'
-                bat 'docker info'
+                bat '"%DOCKER%" --version'
+                bat '"%DOCKER%" info'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t %DOCKER_IMAGE%:%BUILD_NUMBER% .'
-                bat 'docker tag %DOCKER_IMAGE%:%BUILD_NUMBER% %DOCKER_IMAGE%:latest'
+                bat '"%DOCKER%" build -t %DOCKER_IMAGE%:%BUILD_NUMBER% .'
+                bat '"%DOCKER%" tag %DOCKER_IMAGE%:%BUILD_NUMBER% %DOCKER_IMAGE%:latest'
                 echo 'Docker image built successfully.'
             }
         }
@@ -74,16 +76,15 @@ pipeline {
         stage('Deploy Docker Container') {
             steps {
                 script {
-                    // Remove the previous container if it exists.
                     bat(
                         returnStatus: true,
-                        script: 'docker rm -f %CONTAINER_NAME%'
+                        script: '"%DOCKER%" rm -f %CONTAINER_NAME%'
                     )
                 }
 
-                bat 'docker run -d --restart unless-stopped --name %CONTAINER_NAME% -p 8082:80 %DOCKER_IMAGE%:latest'
+                bat '"%DOCKER%" run -d --restart unless-stopped --name %CONTAINER_NAME% -p 8082:80 %DOCKER_IMAGE%:latest'
 
-                bat 'docker ps --filter "name=neon-space-game"'
+                bat '"%DOCKER%" ps --filter "name=neon-space-game"'
 
                 echo 'Docker container deployed successfully.'
             }
@@ -101,3 +102,4 @@ pipeline {
         }
     }
 }
+
